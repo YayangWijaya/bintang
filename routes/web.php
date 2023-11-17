@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/about', [IndexController::class, 'about'])->name('about');
+
 Route::get('loker/{job}', [IndexController::class, 'job'])->name('loker');
 Route::post('loker/{job}', [IndexController::class, 'applyJob'])->name('loker.apply');
 

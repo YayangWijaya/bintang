@@ -16,6 +16,11 @@ class IndexController extends Controller
         ]);
     }
 
+    public function about()
+    {
+        return view('about');
+    }
+
     public function job(Job $job)
     {
         $job->increment('views');

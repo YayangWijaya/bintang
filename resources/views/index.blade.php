@@ -4,8 +4,7 @@
 <div id="banner" style="background-image: url({{ asset('images/banner-home-01.jpg') }})" class="parallax background" data-img-width="2000" data-img-height="1330" data-diff="100">
 	<div class="container">
 		<div class="sixteen columns">
-
-			<div class="search-container">
+			<div class="search-container" style="padding: 130px 0;">
 				<div class="announce">
                     <span>Selamat datang di <strong>CBI Career</strong></span>
                     <p style="margin-top: 15px;">PT Century Batteries Indonesia</p>
@@ -14,7 +13,6 @@
                     </div>
                 </div>
 			</div>
-
 		</div>
 	</div>
 </div>

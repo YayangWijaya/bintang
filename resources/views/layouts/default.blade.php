@@ -24,11 +24,19 @@
 			<ul id="responsive">
 
 				<li>
-                    <a id="current" href="{{ route('index') }}">Home</a>
+                    <a id="{{ request()->routeIs('index') ? 'current' : '' }}" href="{{ route('index') }}">Home</a>
 				</li>
 
                 <li>
-                    <a href="{{ route('login') }}">Login</a>
+                    <a id="{{ request()->routeIs('about') ? 'current' : '' }}" href="{{ route('about') }}">About</a>
+				</li>
+
+                <li>
+                    <a href="https://cbi-astra.com/contact/?lang=id" target="_blank">Contact</a>
+                </li>
+
+                <li>
+                    <a id="{{ request()->routeIs('login') ? 'current' : '' }}" href="{{ route('login') }}">Login</a>
 				</li>
 
 			</ul>
@@ -41,6 +49,19 @@
 @yield('content')
 
 <div id="footer">
+    <div style="text-align: center;padding: 20px 0;">
+        <h1 style="color: #fff !important;font-weight: 500;">Alamat Kami</h1>
+    </div>
+    <div style="display: flex;justify-content: space-between;width: 100%;">
+        <div style="width: 100%;border: 5px solid #000;">
+            <iframe style="pointer-events: none;border:0;width: 100%;" src="https://www.google.com/maps/d/u/0/embed?mid=11sandiV9WcxV10-VRcF0GV-NgjM" height="500" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div style="width: 100%;border: 5px solid #000;">
+            <iframe style="pointer-events: none;border:0;width: 100%;" src="https://www.google.com/maps/d/u/0/embed?mid=16TA-4ZFv-2SjaZlPnpULzluab9o&usp" height="500" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
 	<div class="container">
 		<div class="footer-bottom">
 			<div class="sixteen columns">
