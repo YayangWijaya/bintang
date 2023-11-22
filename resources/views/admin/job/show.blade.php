@@ -74,10 +74,6 @@
                     <nav>
                         <ul class="ul-time">
                           <li style="text-align: -webkit-center;">
-                            <a href="#" class="active"><div></div></a>
-                            <span>HRD</span>
-                          </li>
-                          <li style="text-align: -webkit-center;">
                             <a href="#" class="{{ $candidate->step > 1 ? 'active' : '' }}"><div></div></a>
                             <span>Psikotest</span>
                           </li>
@@ -88,6 +84,10 @@
                           <li style="text-align: -webkit-center;">
                             <a href="#" class="{{ $candidate->step > 3 ? 'active' : '' }}"><div></div></a>
                             <span>Kesehatan</span>
+                          </li>
+                          <li style="text-align: -webkit-center;">
+                            <a href="#" class="active"><div></div></a>
+                            <span>HRD</span>
                           </li>
                         </ul>
                         <div class="time">
