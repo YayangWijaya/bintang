@@ -54,7 +54,6 @@
                     <h5>Minimal Pendidikan</h5>
                     <select data-placeholder="Pilih Minimal Pendidikan" class="chosen-select-no-single" name="min_edu" id="min_edu" required>
                         <option value="" selected disabled></option>
-                        <option value="SMP">SMP</option>
                         <option value="SMA Sederajat">SMA Sederajat</option>
                         <option value="D3">D3</option>
                         <option value="S1">S1</option>
