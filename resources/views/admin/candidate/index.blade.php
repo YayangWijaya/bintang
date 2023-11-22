@@ -98,30 +98,29 @@
 
                 <ul>
                     @if ($candidate->step < 5)
-                      @if ($candidate->step === 1 && auth()->user()->role_name === 'HRD')
-                      <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button">LOLOS HRD</a>
-                      @elseif (auth()->user()->role_name === 'HRD')
-                      <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
-                      @endif
-
-                      @if ($candidate->step === 2 && auth()->user()->role_name === 'Admin Psikotest')
+                      @if ($candidate->step === 1 && auth()->user()->role_name === 'Admin Psikotest')
                       <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button">LOLOS PSIKOTEST</a>
                       @elseif (auth()->user()->role_name === 'Admin Psikotest')
                       <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
                       @endif
 
-                      @if ($candidate->step === 3 && auth()->user()->role_name === 'Admin Fisik')
+                      @if ($candidate->step === 2 && auth()->user()->role_name === 'Admin Fisik')
                       <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button">LOLOS FISIK</a>
                       @elseif (auth()->user()->role_name === 'Admin Fisik')
                       <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
                       @endif
 
-                      @if ($candidate->step === 4 && auth()->user()->role_name === 'Admin Kesehatan')
+                      @if ($candidate->step === 3 && auth()->user()->role_name === 'Admin Kesehatan')
                       <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button">LOLOS KESEHATAN</a>
                       @elseif (auth()->user()->role_name === 'Admin Kesehatan')
                       <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
                       @endif
 
+                      @if ($candidate->step === 4 && auth()->user()->role_name === 'HRD')
+                      <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button">LOLOS HRD</a>
+                      @elseif (auth()->user()->role_name === 'HRD')
+                      <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
+                      @endif
                     @else
                       <a href="#" class="button" style="background-color: rgba(146, 199, 31, 1);">KANDIDAT LOLOS</a>
                     @endif
