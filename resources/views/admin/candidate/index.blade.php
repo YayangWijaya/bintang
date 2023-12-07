@@ -23,12 +23,14 @@
         <div class="application">
             <div class="app-content">
                 <div class="info">
-                    <img src="{{ asset($candidate->photo_url) }}" alt="{{ $candidate->name }}" style="object-fit: cover;">
-                    <span>{{ $candidate->name }}</span>
+                    <img src="{{ asset($candidate->photo_url) }}" alt="{{ $candidate->name }}" style="object-fit: cover;{{ $candidate->terminated ? '-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */filter: grayscale(100%);' : '' }}">
+                    <span style="{{ $candidate->terminated ? 'color: #A9B2C3;' : '' }}">{{ $candidate->name }}</span>
                     <ul>
                         <li><a href="{{ asset($candidate->cv_url) }}" target="_blank"><i class="fa fa-file-text"></i> Lihat CV</a></li>
+                        <li><a href="{{ asset($candidate->document_url) }}" target="_blank"><i class="fa fa-file-text"></i> Lihat Berkas</a></li>
                         <li><a href="https://wa.me/{{ $candidate->wa }}" target="_blank"><i class="fa fa-phone"></i> WhatsApp</a></li>
                         <li><a><i class="fa fa-user"></i> {{ $candidate->age }} Tahun</a></li>
+                        <li><a><i class="fa fa-user"></i> {{ $candidate->step_name }}</a></li>
                     </ul>
                 </div>
 
@@ -69,63 +71,71 @@
 
             </div>
 
-            <div class="app-footer" style="padding: 10px 20px;">
-                <div class="timeline" style="width: 50%;">
-                    <nav>
-                        <ul class="ul-time">
-                          <li style="text-align: -webkit-center;">
-                            <a href="#" class="{{ $candidate->step > 1 ? 'active' : '' }}"><div></div></a>
-                            <span>Psikotest</span>
-                          </li>
-                          <li style="text-align: -webkit-center;">
-                            <a href="#" class="{{ $candidate->step > 2 ? 'active' : '' }}"><div></div></a>
-                            <span>Fisik</span>
-                          </li>
-                          <li style="text-align: -webkit-center;">
-                            <a href="#" class="{{ $candidate->step > 3 ? 'active' : '' }}"><div></div></a>
-                            <span>Kesehatan</span>
-                          </li>
-                          <li style="text-align: -webkit-center;">
-                            <a href="#" class="active"><div></div></a>
-                            <span>HRD</span>
-                          </li>
-                        </ul>
-                        <div class="time">
-                          <span style="width: {{ $candidate->step*113 }}px;"></span>
-                        </div>
-                     </nav>
+            <div class="app-footer" style="padding: 10px 20px;display: flex;align-items: center;justify-content: space-between;">
+                <div class='progressBar--outerWrap'>
+                    <div class="progressBar timeline">
+                        <ol>
+                            <li class="{{ $candidate->step === 1 ? 'active' : ($candidate->step > 1 ? 'completed' : '') }}">
+                                <span>Psikotest</span>
+                            </li>
+                            <li class="{{ $candidate->step === 2 ? 'active' : ($candidate->step > 2 ? 'completed' : '') }}">
+                                <span>Fisik</span>
+                            </li>
+                            <li class="{{ $candidate->step === 3 ? 'active' : ($candidate->step > 3 ? 'completed' : '') }}">
+                                <span>Kesehatan</span>
+                            </li>
+                            <li class="{{ $candidate->step === 4 ? 'active' : ($candidate->step > 4 ? 'completed' : '') }}">
+                                <span>HRD</span>
+                            </li>
+                            <li class="{{ $candidate->step === 5 ? 'active' : ($candidate->step > 5 ? 'completed' : '') }}">
+                                <span>TTD Kontrak</span>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
 
-                <ul>
-                    @if ($candidate->step < 5)
-                      @if ($candidate->step === 1 && auth()->user()->role_name === 'Admin Psikotest')
-                      <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button">LOLOS PSIKOTEST</a>
-                      @elseif (auth()->user()->role_name === 'Admin Psikotest')
-                      <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
-                      @endif
+                <div>
+                    <ul>
+                        @if ($candidate->step < 4)
+                            @if ($candidate->terminated)
+                            <a class="button" style="background-color: #282828;">TIDAK LOLOS</a>
+                            @endif
+                        @endif
+                        @if ($candidate->step < 5 && !$candidate->terminated)
+                          @if ($candidate->step === 1 && auth()->user()->role_name === 'Admin Psikotest')
+                          <a href="{{ route('terminateCandidate', ['candidate' => $candidate->id]) }}" class="button">TIDAK LOLOS</a>
+                          <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button" style="background-color: #92C71F;">LOLOS PSIKOTEST</a>
+                          @elseif (auth()->user()->role_name === 'Admin Psikotest')
+                          <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
+                          @endif
 
-                      @if ($candidate->step === 2 && auth()->user()->role_name === 'Admin Fisik')
-                      <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button">LOLOS FISIK</a>
-                      @elseif (auth()->user()->role_name === 'Admin Fisik')
-                      <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
-                      @endif
+                          @if ($candidate->step === 2 && auth()->user()->role_name === 'Admin Fisik')
+                          <a href="{{ route('terminateCandidate', ['candidate' => $candidate->id]) }}" class="button">TIDAK LOLOS</a>
+                          <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button" style="background-color: #92C71F;">LOLOS FISIK</a>
+                          @elseif (auth()->user()->role_name === 'Admin Fisik')
+                          <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
+                          @endif
 
-                      @if ($candidate->step === 3 && auth()->user()->role_name === 'Admin Kesehatan')
-                      <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button">LOLOS KESEHATAN</a>
-                      @elseif (auth()->user()->role_name === 'Admin Kesehatan')
-                      <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
-                      @endif
+                          @if ($candidate->step === 3 && auth()->user()->role_name === 'Admin Kesehatan')
+                          <a href="{{ route('terminateCandidate', ['candidate' => $candidate->id]) }}" class="button">TIDAK LOLOS</a>
+                          <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button" style="background-color: #92C71F;">LOLOS KESEHATAN</a>
+                          @elseif (auth()->user()->role_name === 'Admin Kesehatan')
+                          <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
+                          @endif
 
-                      @if ($candidate->step === 4 && auth()->user()->role_name === 'HRD')
-                      <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button">LOLOS HRD</a>
-                      @elseif (auth()->user()->role_name === 'HRD')
-                      <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
-                      @endif
-                    @else
-                      <a href="#" class="button" style="background-color: rgba(146, 199, 31, 1);">KANDIDAT LOLOS</a>
-                    @endif
-                </ul>
-                <div class="clearfix"></div>
+                          @if ($candidate->step === 4 && auth()->user()->role_name === 'HRD')
+                          <a href="{{ route('terminateCandidate', ['candidate' => $candidate->id]) }}" class="button">TIDAK LOLOS</a>
+                          <a href="{{ route('processCandidate', ['candidate' => $candidate->id]) }}" class="button" style="background-color: #92C71F;">LOLOS WAWANCARA</a>
+                          @elseif (auth()->user()->role_name === 'HRD')
+                          <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
+                          @endif
+                        @else
+                          @if (!$candidate->terminated)
+                          <a href="#" class="button" style="background-color: rgba(146, 199, 31, 1);">KANDIDAT LOLOS</a>
+                          @endif
+                        @endif
+                    </ul>
+                </div>
             </div>
         </div>
         @empty

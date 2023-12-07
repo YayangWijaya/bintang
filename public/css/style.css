@@ -9462,125 +9462,205 @@ body ul.tabs-nav-o li:first-child a, body ul.tabs-nav li:first-child a { border-
 body ul.tabs-nav-o li:last-child a, body ul.tabs-nav li:last-child a { border-radius: 0 3px 3px 0;}
 /* BORDER RADIUS - END */
 
-.timeline .title {
-  text-align: center;
+/* Progress Bar */
+.progressBar {
+  width: 50%;
 }
-
-.timeline .title__1 {
-  font-size: 40px !important;
-}
-.timeline .title__1--black {
-  color: #000;
-}
-.timeline .title__2 {
-  font-size: 30px !important;
-}
-.timeline .title__2--black {
-  color: #000;
-}
-.timeline .title__3 {
-  font-size: 25px !important;
-}
-.timeline .title__3--black {
-  color: #000;
-}
-.timeline .title__4 {
-  font-size: 20px !important;
-}
-.timeline .title__4--black {
-  color: #000;
-}
-.timeline .title__5 {
-  font-size: 18px !important;
-}
-.timeline .title__5--black {
-  color: #000;
-}
-.timeline .title__6 {
-  font-size: 15px !important;
-}
-.timeline .title__6--black {
-  color: #000;
-}
-
-.timeline nav {
-  position: relative;
-}
-.timeline nav ul {
-  text-align: center;
-  position: absolute;
-  z-index: 1;
-  padding: 0px;
+.progressBar--outerWrap {
+  display: flex;
   width: 100%;
+  max-width: 655px;
+  height: 100%;
 }
-.timeline nav ul li {
+.progressBar.timeline, .progressBar.timeline--horizontal {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.progressBar.timeline ol, .progressBar.timeline--horizontal ol {
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+  width: 100%;
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
+  display: flex;
+  flex-direction: row;
+}
+.progressBar.timeline ol li, .progressBar.timeline--horizontal ol li {
+  list-style: none;
+  flex: 2;
+  position: relative;
+  border-bottom: 2px solid #a9b2c3;
+  line-height: 1.5;
+  padding-bottom: 14px;
+  text-align: center;
+}
+.progressBar.timeline ol li::before, .progressBar.timeline--horizontal ol li::before {
+  content: " ";
+  display: flex;
+  position: absolute;
+  top: 26px;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background-color: #a9b2c3;
+  left: 50%;
+  z-index: 3;
+}
+.progressBar.timeline ol li span, .progressBar.timeline--horizontal ol li span {
+  color: #2b347e;
   display: inline-block;
-  margin: 0px 34px;
-}
-.timeline nav ul li a {
-  width: 30px;
-  height: 30px;
-  border: solid 2px #d4d4d4;
-  background-color: #ededed;
-  border-radius: 50px;
-  display: block;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-}
-.timeline nav ul li a:hover {
-  text-decoration: none;
-}
-.timeline nav ul li a > div {
-  background-color: #d4d4d4;
+  font-size: inherit;
+  font-weight: inherit;
+  white-space: break-spaces;
+  word-break: break-word;
   text-align: center;
-  display: table;
-  width: 20px;
-  height: 20px;
-  border-radius: 50px;
-  margin: 4px auto;
+  font-family: Roboto;
 }
-.timeline nav ul li a > div span {
-  display: table-cell;
-  vertical-align: middle;
-  color: #fff;
-  font-weight: bold;
+.progressBar.timeline ol li.completed::before, .progressBar.timeline--horizontal ol li.completed::before {
+  background-color: #ff6347;
 }
-.timeline nav ul li a.active {
-  border: solid 2px #92c71f;
-  background-color: #fff;
-  transition: all 0.3s ease-in-out;
-}
-.timeline nav ul li a.active > div {
-  background-color: #92c71f;
-}
-.timeline nav ul li a.active:checked {
-  text-decoration: none;
-}
-.timeline nav .time {
+.progressBar.timeline ol li.active::after, .progressBar.timeline ol li.completed::after, .progressBar.timeline--horizontal ol li.active::after, .progressBar.timeline--horizontal ol li.completed::after {
+  content: " ";
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 5px;
-  background-color: #ededed;
-  position: relative;
-  top: 14px;
-  z-index: 0;
-}
-.timeline nav .time span {
-  width: 100px;
-  height: 5px;
-  background-color: #92c71f;
   position: absolute;
-  top: 0px;
-  z-index: 0;
-  transition: all 0.4s ease-in-out;
+  bottom: -2px;
+  left: -50%;
+  z-index: 2;
+  border-bottom: 2px solid #ff6347;
 }
-
-.timeline .tab-content {
+.progressBar.timeline ol li.active::before, .progressBar.timeline--horizontal ol li.active::before {
+  background-color: #ffffff;
+  border: 2px solid #ff6347;
+}
+.progressBar.timeline ol li:first-child, .progressBar.timeline ol li:last-child, .progressBar.timeline--horizontal ol li:first-child, .progressBar.timeline--horizontal ol li:last-child {
+  flex: 1;
+}
+.progressBar.timeline ol li:first-child, .progressBar.timeline--horizontal ol li:first-child {
+  text-align: start;
+}
+.progressBar.timeline ol li:first-child::before, .progressBar.timeline--horizontal ol li:first-child::before {
+  left: 0;
+}
+.progressBar.timeline ol li:first-child.completed:after, .progressBar.timeline ol li:first-child.active:after, .progressBar.timeline--horizontal ol li:first-child.completed:after, .progressBar.timeline--horizontal ol li:first-child.active:after {
+  width: 0;
+  border-bottom: 2px solid #a9b2c3;
+}
+.progressBar.timeline ol li:last-child, .progressBar.timeline--horizontal ol li:last-child {
+  text-align: end;
+}
+.progressBar.timeline ol li:last-child::before, .progressBar.timeline--horizontal ol li:last-child::before {
+  left: 91%;
+}
+.progressBar.timeline ol li:last-child.active::after, .progressBar.timeline ol li:last-child.completed::after, .progressBar.timeline--horizontal ol li:last-child.active::after, .progressBar.timeline--horizontal ol li:last-child.completed::after {
+  left: -100%;
+  width: 200%;
+}
+.progressBar.timeline--vertical {
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+.progressBar.timeline--vertical ol {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
+}
+.progressBar.timeline--vertical ol li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  list-style: none;
+  flex: 2;
   position: relative;
-  top: 133px;
-  overflow: hidden;
+  border-left: 2px solid #a9b2c3;
+  line-height: 1.5;
+  padding-left: 28px;
+  min-height: 96px;
 }
-.timeline .tab-content article {
-  height: 200px;
-  width: 100%;
-  display: none;
+.progressBar.timeline--vertical ol li::before {
+  content: " ";
+  display: flex;
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background-color: #a9b2c3;
+  bottom: 50%;
+  left: -9px;
+  z-index: 3;
+}
+.progressBar.timeline--vertical ol li span.title {
+  color: #2b347e;
+}
+.progressBar.timeline--vertical ol li span.subtitle {
+  color: #697e9a;
+  font-size: 12px;
+}
+.progressBar.timeline--vertical ol li.completed:hover::before, .progressBar.timeline--vertical ol li.active:hover::before {
+  transform: scale(1.1);
+}
+.progressBar.timeline--vertical ol li.completed::after, .progressBar.timeline--vertical ol li.active::after {
+  content: " ";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  left: -2px;
+  top: -50%;
+  position: absolute;
+  z-index: 2;
+  border-left: 2px solid #ff6347;
+}
+.progressBar.timeline--vertical ol li.completed::before {
+  background-color: #ff6347;
+}
+.progressBar.timeline--vertical ol li.active::before {
+  background-color: #ffffff;
+  border: 2px solid #ff6347;
+}
+.progressBar.timeline--vertical ol li:first-child, .progressBar.timeline--vertical ol li:last-child {
+  flex: 1;
+  min-height: 48px;
+}
+.progressBar.timeline--vertical ol li:first-child {
+  justify-content: flex-start;
+  vertical-align: text-top;
+}
+.progressBar.timeline--vertical ol li:first-child::before {
+  top: 0;
+}
+.progressBar.timeline--vertical ol li:first-child.completed:after, .progressBar.timeline--vertical ol li:first-child.active:after {
+  top: 0;
+  width: 0;
+  border-left: 2px solid #a9b2c3;
+}
+.progressBar.timeline--vertical ol li:last-child {
+  justify-content: flex-end;
+}
+.progressBar.timeline--vertical ol li:last-child::before {
+  bottom: 0;
+}
+.progressBar.timeline--vertical ol li:last-child.active:hover::before, .progressBar.timeline--vertical ol li:last-child.completed:hover::before {
+  transform: scale(1.1);
+}
+.progressBar.timeline--vertical ol li:last-child.active::after, .progressBar.timeline--vertical ol li:last-child.completed::after {
+  left: -2px;
+  height: 200%;
+  top: -100%;
 }

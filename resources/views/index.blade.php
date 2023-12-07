@@ -9,7 +9,7 @@
                     <span>Selamat datang di <strong>CBI Career</strong></span>
                     <p style="margin-top: 15px;">PT Century Batteries Indonesia</p>
                     <div class="browse-jobs">
-                        <a href="browse-categories.html">Mulai bangun mimpimu!</a>
+                        <a href="#loker">Mulai bangun mimpimu!</a>
                     </div>
                 </div>
 			</div>
@@ -17,7 +17,7 @@
 	</div>
 </div>
 
-<div class="container">
+<div class="container" id="loker">
 	<div>
         <div class="padding-right">
             <div style="text-align: center;">

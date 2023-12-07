@@ -20,13 +20,15 @@ class Job extends Model
         'min_edu',
         'description',
         'expire',
-        'views'
+        'views',
+        'max_candidate',
     ];
 
     protected $appends = [
         'type_name',
         'now',
-        'expire_at'
+        'expire_at',
+        'available',
     ];
 
     protected static function booted()
@@ -56,5 +58,18 @@ class Job extends Model
     {
         $expire = $this->expire ? date('d-m-Y', strtotime($this->expire)) : 'Tidak ditentukan';
         return $expire;
+    }
+
+    public function getAvailableAttribute()
+    {
+        if ($this->expire && date('Y-m-d', strtotime($this->expire)) < date('Y-m-d')) {
+            return false;
+        }
+
+        if ($this->max_candidate && $this->max_candidate >= count($this->candidates)) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -61,18 +61,23 @@
                     </select>
                 </div>
 
+                <div class="form">
+                    <h5>Tgl Expire (Optional)</h5>
+                    <input class="search-field" type="date" name="expire" id="expire"/>
+                </div>
+
+                <div class="form">
+                    <h5>Maksimal Kandidat</h5>
+                    <input class="search-field" type="text" name="max_candidate" placeholder="Jika kosong atau 0 maka tidak ada maksimal" id="max_candidate"/>
+                </div>
+
                 <!-- Description -->
                 <div class="form" style="width: 100%;">
                     <h5>Deskripsi</h5>
-                    <textarea name="description" id="description"  required></textarea>
+                    <textarea name="description" id="description" required></textarea>
                 </div>
 
                 <div class="form" style="width: 100%;display:flex;justify-content:space-between;align-items:center;">
-                    <div style="display: block;">
-                        <small>Tgl Expire (optional)</small>
-                        <input class="search-field" type="date" name="expire" id="expire"/>
-                    </div>
-
                     <div>
                         <button type="submit" class="button" style="float: right;color: #fff;">Tambah <i class="fa fa-arrow-circle-right"></i></button>
                     </div>

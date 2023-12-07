@@ -90,10 +90,14 @@
 					</li>
 				</ul>
 
+				@if ($job->available)
+                <a href="#small-dialog" class="popup-with-zoom-anim button">Lamar Pekerjaan Ini</a>
+                @else
+                <a style="background-color: #282828;" class="popup-with-zoom-anim button">Loker Tidak Tersedia</a>
+                @endif
 
-				<a href="#small-dialog" class="popup-with-zoom-anim button">Lamar Pekerjaan Ini</a>
-
-				<div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
+				@if ($job->available)
+                <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
 					<div class="small-dialog-headline">
 						<h2>Lamar Pekerjaan Ini</h2>
 					</div>
@@ -148,14 +152,17 @@
 							<div class="upload-info"><strong>Upload CV  (PDF)</strong> <span>Max. file size: 5MB</span></div>
                             <input type="file" accept=".pdf" name="cv" id="cv" required/>
 
+                            <div class="upload-info"><strong>Upload Berkas Ijazah, Sertifikat, dll (RAR/ZIP/PDF)</strong> <span>Max. file size: 5MB</span></div>
+                            <input type="file" accept=".pdf" name="document" id="document" required/>
+
                             <div class="upload-info"><strong>Upload Pas Foto </strong> <span>Max. file size: 5MB</span></div>
                             <input type="file" accept=".jpg,.jpeg,.png" name="photo" id="photo" required/>
 
 							<button type="submit" class="send" style="margin-top: 15px !important;">Kirim Lamaran</button>
 						</form>
 					</div>
-
 				</div>
+                @endif
 
 			</div>
 

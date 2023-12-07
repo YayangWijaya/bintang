@@ -11,6 +11,7 @@ class IndexController extends Controller
     public function index()
     {
         $jobs = Job::orderBy('created_at', 'desc')->get();
+
         return view('index', [
             'jobs' => $jobs
         ]);
@@ -40,8 +41,12 @@ class IndexController extends Controller
             }
 
             $md5Ktp = md5($request->ktp_number);
+
             $cvFn = $request->file('cv')->getClientOriginalName();
             $cv = $request->file('cv')->storeAs("public/cv/{$md5Ktp}", $cvFn);
+
+            $documentFn = $request->file('document')->getClientOriginalName();
+            $document = $request->file('document')->storeAs("public/document/{$md5Ktp}", $documentFn);
 
             $photoFn = $request->file('photo')->getClientOriginalName();
             $photo = $request->file('photo')->storeAs("public/photo/{$md5Ktp}", $photoFn);
@@ -49,6 +54,7 @@ class IndexController extends Controller
             $data = $request->all();
             $data['cv'] = $cv;
             $data['photo'] = $photo;
+            $data['document'] = $document;
 
             $job->candidates()->create($data);
             DB::commit();

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Candidate;
 use App\Http\Requests\StoreCandidateRequest;
 use App\Http\Requests\UpdateCandidateRequest;
+use App\Jobs\SendCandidateStatusUpdatedJob;
+use App\Jobs\SendCandidateTerminatedJob;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
@@ -78,7 +80,19 @@ class CandidateController extends Controller
 
     public function process(Candidate $candidate)
     {
+        if ($candidate->step <= 5) {
+            dispatch(new SendCandidateStatusUpdatedJob($candidate));
+        }
+
         $candidate->increment('step');
+
         return redirect()->back()->with('success', 'Sukses proses kandidat ke tahap selanjutnya');
+    }
+
+    public function terminate(Candidate $candidate)
+    {
+        $candidate->update(['terminated' => true]);
+        dispatch(new SendCandidateTerminatedJob($candidate));
+        return redirect()->back()->with('success', 'Berhasil membuat kandidat tidak lolos');
     }
 }

@@ -35,5 +35,6 @@ Route::prefix('admin')->group(function() {
         Route::resource('job', JobController::class);
 
         Route::get('processCandidate/{candidate}', [CandidateController::class, 'process'])->name('processCandidate');
+        Route::get('terminateCandidate/{candidate}', [CandidateController::class, 'terminate'])->name('terminateCandidate');
     });
 });
