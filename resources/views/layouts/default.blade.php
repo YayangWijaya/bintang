@@ -28,7 +28,8 @@
 				</li>
 
                 <li>
-                    <a id="{{ request()->routeIs('about') ? 'current' : '' }}" href="{{ route('about') }}">About</a>
+                    {{-- <a id="{{ request()->routeIs('about') ? 'current' : '' }}" href="{{ route('about') }}">About</a> --}}
+                    <a href="https://cbi-astra.com/company-profile/?lang=id" target="_blank">About</a>
 				</li>
 
                 <li>
@@ -36,7 +37,11 @@
                 </li>
 
                 <li>
+                    @if (auth()->check())
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                    @else
                     <a id="{{ request()->routeIs('login') ? 'current' : '' }}" href="{{ route('login') }}">Login</a>
+                    @endif
 				</li>
 
 			</ul>

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="my-account" style="margin-top: 50px;">
+<div class="my-account" style="margin-top: 75px;">
     <form method="post" class="login" method="post" action="{{ route('login') }}">
         <h2>Login Form</h2>
         @csrf
@@ -24,7 +24,8 @@
         @endif
 
         <p class="form-row">
-            <input type="submit" class="button border fw margin-top-10"/>
+            <input type="submit" class="button border fw margin-top-10" value="Login"/>
+            <span>Belum punya akun? <a href="{{ route('signup') }}">Daftar</a></span>
         </p>
     </form>
 </div>

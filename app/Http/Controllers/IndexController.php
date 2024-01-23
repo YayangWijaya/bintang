@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ApplyJobRequest;
+use App\Models\Application;
 use App\Models\Job;
 use Illuminate\Support\Facades\DB;
 
@@ -31,32 +32,21 @@ class IndexController extends Controller
         ]);
     }
 
-    public function applyJob(ApplyJobRequest $request, Job $job)
+    public function apply(Job $job)
     {
         DB::beginTransaction();
 
         try {
-            if (count($job->candidates()->where('ktp_number', $request->ktp_number)->get()) > 0) {
-                return redirect()->back()->with('error', 'Kandidat sudah pernah melamar lowongan ini');
+            $exists = Application::whereUserId(auth()->id())->whereVacancyId($job->id)->exists();
+
+            if ($exists) {
+                redirect()->back()->with('error', 'Anda sudah pernah melamar pekerjaan ini');
             }
 
-            $md5Ktp = md5($request->ktp_number);
+            Application::create([
+                'vacancy_id' => $job->id
+            ]);
 
-            $cvFn = $request->file('cv')->getClientOriginalName();
-            $cv = $request->file('cv')->storeAs("public/cv/{$md5Ktp}", $cvFn);
-
-            $documentFn = $request->file('document')->getClientOriginalName();
-            $document = $request->file('document')->storeAs("public/document/{$md5Ktp}", $documentFn);
-
-            $photoFn = $request->file('photo')->getClientOriginalName();
-            $photo = $request->file('photo')->storeAs("public/photo/{$md5Ktp}", $photoFn);
-
-            $data = $request->all();
-            $data['cv'] = $cv;
-            $data['photo'] = $photo;
-            $data['document'] = $document;
-
-            $job->candidates()->create($data);
             DB::commit();
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());

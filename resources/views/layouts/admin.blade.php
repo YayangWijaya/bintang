@@ -37,10 +37,15 @@
 		<div class="dashboard-nav-inner">
 
 			<ul data-submenu-title="Menu">
-				<li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><a style="text-decoration: none;" href="{{ route('dashboard') }}">Dashboard</a></li>
-				<li class="{{ request()->routeIs('candidate*') ? 'active' : '' }}"><a style="text-decoration: none;" href="{{ route('candidate.index') }}">Data Kandidat</a></li>
+				@if (auth()->user()->is_candidate)
+                <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><a style="text-decoration: none;" href="{{ route('dashboard') }}">Status Lowongan</a></li>
+                @else
+                <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><a style="text-decoration: none;" href="{{ route('dashboard') }}">Dashboard</a></li>
+				{{-- <li class="{{ request()->routeIs('candidate*') ? 'active' : '' }}"><a style="text-decoration: none;" href="{{ route('candidate.index') }}">Data Kandidat</a></li> --}}
+				<li class="{{ request()->routeIs('application*') ? 'active' : '' }}"><a style="text-decoration: none;" href="{{ route('application.index') }}">Data Lamaran</a></li>
 				<li class="{{ request()->routeIs('job*') ? 'active' : '' }}"><a style="text-decoration: none;" href="{{ route('job.index') }}">Data Loker</a></li>
-				<li class=""><a style="text-decoration: none;" href="{{ route('index') }}">Logout</a></li>
+                @endif
+				<li class=""><a style="text-decoration: none;" href="{{ route('logout') }}">Logout</a></li>
 			</ul>
 
 		</div>

@@ -48,11 +48,27 @@ class User extends Authenticatable
 
     protected $appends = [
         'role_name',
+        'is_candidate'
     ];
+
+    public function candidate()
+    {
+        return $this->hasOne(Candidate::class);
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
 
     public function getRoleNameAttribute()
     {
         return UserRoleEnum::from($this->role)->name();
+    }
+
+    public function getIsCandidateAttribute()
+    {
+        return $this->role === UserRoleEnum::KANDIDAT->value;
     }
 
     public function setPasswordAttribute($password)

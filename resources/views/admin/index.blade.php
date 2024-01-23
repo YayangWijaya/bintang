@@ -33,7 +33,7 @@
 
         <!-- Item -->
     <div class="col-lg-3 col-md-6">
-        <a href="{{ route('candidate.index') }}" class="dashboard-stat color-3" style="color: #fff;cursor: pointer;">
+        <a href="{{ route('application.index') }}" class="dashboard-stat color-3" style="color: #fff;cursor: pointer;">
             <div class="dashboard-stat-content"><h4 class="counter">{{ $candidates }}</h4> <span>Jumlah Kandidat</span></div>
             <div class="dashboard-stat-icon"><i class="ln ln-icon-Business-ManWoman"></i></div>
         </a>
@@ -42,9 +42,9 @@
 
     <!-- Item -->
     <div class="col-lg-3 col-md-6">
-        <a href="{{ route('candidate.index') }}" class="dashboard-stat color-4" style="color: #fff;cursor: pointer;">
-            <div class="dashboard-stat-content"><h4 class="counter">{{ $candidatePassed }}</h4> <span>Kandidat Lolos</span></div>
-            <div class="dashboard-stat-icon"><i class="ln ln-icon-Add-UserStar "></i></div>
+        <a href="{{ route('application.index') }}" class="dashboard-stat color-4" style="color: #fff;cursor: pointer;">
+            <div class="dashboard-stat-content"><h4 class="counter">{{ $applications }}</h4> <span>Lamaran</span></div>
+            <div class="dashboard-stat-icon"><i class="ln ln-icon-Files"></i></div>
         </a>
     </div>
 

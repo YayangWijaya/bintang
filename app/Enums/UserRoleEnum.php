@@ -8,6 +8,7 @@ enum UserRoleEnum: int
     case ADMIN_PSIKOTEST = 1;
     case ADMIN_FISIK = 2;
     case ADMIN_KESEHATAN = 3;
+    case KANDIDAT = 4;
 
     public function name(): string
     {
@@ -16,6 +17,7 @@ enum UserRoleEnum: int
             UserRoleEnum::ADMIN_PSIKOTEST => 'Admin Psikotest',
             UserRoleEnum::ADMIN_FISIK => 'Admin Fisik',
             UserRoleEnum::ADMIN_KESEHATAN => 'Admin Kesehatan',
+            UserRoleEnum::KANDIDAT => 'Kandidat',
         };
     }
 }

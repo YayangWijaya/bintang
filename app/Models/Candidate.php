@@ -13,7 +13,7 @@ class Candidate extends Model
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'vacancy_id',
+        'user_id',
         'name',
         'email',
         'phone',
@@ -26,8 +26,6 @@ class Candidate extends Model
         'cv',
         'photo',
         'document',
-        'step',
-        'terminated',
     ];
 
     protected $appends = [
@@ -36,12 +34,16 @@ class Candidate extends Model
         'document_url',
         'wa',
         'age',
-        'step_name',
     ];
 
     protected static function booted()
     {
         //
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function job()
@@ -78,24 +80,6 @@ class Candidate extends Model
     {
         $wa = preg_replace('/^0/mi', '62', $this->phone);
         return $wa;
-    }
-
-    public function getStepNameAttribute()
-    {
-        switch ($this->step) {
-            case 2:
-                return 'Test Psikotest';
-            break;
-            case 3:
-                return 'Test Fisik';
-            break;
-            case 4:
-                return 'Test Kesehatan';
-            break;
-            case 5:
-                return 'Wawancara';
-            break;
-        }
     }
 
     public function getAgeAttribute()

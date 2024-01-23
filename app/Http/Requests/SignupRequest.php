@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ApplyJobRequest extends FormRequest
+class SignupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class ApplyJobRequest extends FormRequest
             'name' => 'required',
             'ktp_number' => 'required|digits:16',
             'email' => 'required',
+            'password' => 'required',
             'phone' => 'required',
             'pob' => 'required',
             'dob' => 'required',

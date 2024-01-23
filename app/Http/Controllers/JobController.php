@@ -71,4 +71,9 @@ class JobController extends Controller
         $job->delete();
         return redirect()->route('job.index')->with('success','Data berhasil dihapus.');
     }
+
+    public function apply(Job $job)
+    {
+
+    }
 }

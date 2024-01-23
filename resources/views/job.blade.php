@@ -91,77 +91,9 @@
 				</ul>
 
 				@if ($job->available)
-                <a href="#small-dialog" class="popup-with-zoom-anim button">Lamar Pekerjaan Ini</a>
+                <a href="{{ route('apply', ['job' => $job->id]) }}" class="button">Lamar Pekerjaan Ini</a>
                 @else
-                <a style="background-color: #282828;" class="popup-with-zoom-anim button">Loker Tidak Tersedia</a>
-                @endif
-
-				@if ($job->available)
-                <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
-					<div class="small-dialog-headline">
-						<h2>Lamar Pekerjaan Ini</h2>
-					</div>
-
-					<div class="small-dialog-content">
-						<form action="{{ route('loker.apply', ['job' => $job->id]) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-							<input type="text" placeholder="Nama Lengkap" name="name" id="name" required/>
-							<input type="number" placeholder="Nomor KTP" name="ktp_number" id="ktp_number" required/>
-							<input type="text" placeholder="Email" name="email" id="email" required/>
-							<input type="number" placeholder="Nomor WhatsApp" name="phone" id="phone" required/>
-
-                            <div style="display: flex;align-items: center;">
-                                <div style="width: 50%;">
-                                    <input type="text" placeholder="Tempat, Tgl Lahir" name="pob" id="pob" required/>
-                                </div>
-                                <div style="width: 50%;">
-                                    <input type="date" placeholder="Tanggal Lahir" name="dob" id="dob" required/>
-                                </div>
-                            </div>
-
-                            <div style="margin-bottom: 14px;">
-                                <select data-placeholder="Pilih Gender" class="chosen-select-no-single" name="gender" id="gender" required>
-                                    <option value="" selected disabled></option>
-                                    <option value="Laki - Laki">Laki - Laki</option>
-                                    <option value="Perempuan">Perempuan</option>
-                                </select>
-                            </div>
-
-                            <div style="margin-bottom: 14px;">
-                                <select data-placeholder="Pilih Agama" class="chosen-select-no-single" name="religion" id="religion" required>
-                                    <option value="" selected disabled></option>
-                                    <option value="Islam">Islam</option>
-                                    <option value="Kristen Protestan">Kristen Protestan</option>
-                                    <option value="Kristen Katolik">Kristen Katolik</option>
-                                    <option value="Kristen Advent">Kristen Advent</option>
-                                    <option value="Hindu">Hindu</option>
-                                    <option value="Budha">Budha</option>
-                                    <option value="Konghucu">Konghucu</option>
-                                </select>
-                            </div>
-
-                            <div style="margin-bottom: 14px;">
-                                <select data-placeholder="Pilih Status" class="chosen-select-no-single" name="status" id="status" required>
-                                    <option value="" selected disabled></option>
-                                    <option value="Belum Menikah">Belum Menikah</option>
-                                    <option value="Menikah">Menikah</option>
-                                    <option value="Cerai">Cerai</option>
-                                </select>
-                            </div>
-
-							<div class="upload-info"><strong>Upload CV  (PDF)</strong> <span>Max. file size: 5MB</span></div>
-                            <input type="file" accept=".pdf" name="cv" id="cv" required/>
-
-                            <div class="upload-info"><strong>Upload Berkas Ijazah, Sertifikat, dll (RAR/ZIP/PDF)</strong> <span>Max. file size: 5MB</span></div>
-                            <input type="file" accept=".pdf" name="document" id="document" required/>
-
-                            <div class="upload-info"><strong>Upload Pas Foto </strong> <span>Max. file size: 5MB</span></div>
-                            <input type="file" accept=".jpg,.jpeg,.png" name="photo" id="photo" required/>
-
-							<button type="submit" class="send" style="margin-top: 15px !important;">Kirim Lamaran</button>
-						</form>
-					</div>
-				</div>
+                <a style="background-color: #282828;" class="button">Loker Tidak Tersedia</a>
                 @endif
 
 			</div>
