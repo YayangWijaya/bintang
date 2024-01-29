@@ -34,6 +34,7 @@ class SignupRequest extends FormRequest
             'status' => 'required',
             'cv' => 'required|file|mimes:pdf|max:5120',
             'photo' => 'required|file|mimes:jpg,jpeg,png|max:5120',
+            'referrer' => 'nullable'
         ];
     }
 }

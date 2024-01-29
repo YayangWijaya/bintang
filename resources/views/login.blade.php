@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="my-account" style="margin-top: 75px;">
-    <form method="post" class="login" method="post" action="{{ route('login') }}">
+    <form method="post" class="login" action="{{ route('login') }}">
         <h2>Login Form</h2>
         @csrf
         <p class="form-row form-row-wide">

@@ -28,7 +28,7 @@
         </div>
         @empty
         <div style="text-align: center;">
-            <h1>Tidak ada Kandidat</h1>
+            <h1>Tidak ada Lowongan</h1>
         </div>
         @endforelse
         </div>

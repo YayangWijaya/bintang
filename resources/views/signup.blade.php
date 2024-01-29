@@ -6,6 +6,8 @@
         <h2>Form Pendaftaran</h2>
         @csrf
 
+        <input type="hidden" name="referrer" value="{{ session()->get('referrer') }}"/>
+
         <p class="form-row form-row-wide">
             <label for="name">Nama Lengkap:
                 <i class="ln ln-icon-Male"></i>
@@ -100,7 +102,7 @@
         <input type="file" accept=".jpg,.jpeg,.png" name="photo" id="photo" required/>
         <br>
 
-        <button type="submit" class="send" style="margin-top: 25px !important;width: 100%;">Kirim Lamaran</button>
+        <button type="submit" class="send" style="margin-top: 25px !important;width: 100%;">Daftar</button>
     </form>
 </div>
 @endsection

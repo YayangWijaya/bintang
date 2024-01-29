@@ -6,6 +6,7 @@ use App\Http\Requests\ApplyJobRequest;
 use App\Models\Application;
 use App\Models\Job;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
 
 class IndexController extends Controller
 {
@@ -34,13 +35,17 @@ class IndexController extends Controller
 
     public function apply(Job $job)
     {
+        if (!auth()->check()) {
+            return redirect()->route('signup')->with('referrer', Request::server('HTTP_REFERER'));
+        }
+
         DB::beginTransaction();
 
         try {
             $exists = Application::whereUserId(auth()->id())->whereVacancyId($job->id)->exists();
 
             if ($exists) {
-                redirect()->back()->with('error', 'Anda sudah pernah melamar pekerjaan ini');
+                return redirect()->back()->with('error', 'Anda sudah pernah melamar pekerjaan ini');
             }
 
             Application::create([

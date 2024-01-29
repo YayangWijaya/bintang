@@ -33,10 +33,6 @@
 				</li>
 
                 <li>
-                    <a href="https://cbi-astra.com/contact/?lang=id" target="_blank">Contact</a>
-                </li>
-
-                <li>
                     @if (auth()->check())
                     <a href="{{ route('dashboard') }}">Dashboard</a>
                     @else

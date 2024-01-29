@@ -27,18 +27,18 @@ Route::get('signup', [AuthController::class, 'signup'])->name('signup');
 Route::post('signup', [AuthController::class, 'store']);
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
+Route::get('apply/{job}', [IndexController::class, 'apply'])->name('apply');
 
 Route::prefix('dashboard')->group(function() {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('apply/{job}', [IndexController::class, 'apply'])->name('apply');
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
         Route::resource('candidate', CandidateController::class);
         Route::resource('application', ApplicationController::class);
         Route::resource('job', JobController::class);
 
-        Route::get('processCandidate/{candidate}', [CandidateController::class, 'process'])->name('processCandidate');
-        Route::get('terminateCandidate/{candidate}', [CandidateController::class, 'terminate'])->name('terminateCandidate');
+        Route::get('processCandidate/{application}', [CandidateController::class, 'process'])->name('processCandidate');
+        Route::get('terminateCandidate/{application}', [CandidateController::class, 'terminate'])->name('terminateCandidate');
     });
 });

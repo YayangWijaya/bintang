@@ -90,12 +90,13 @@
 					</li>
 				</ul>
 
-				@if ($job->available)
+                @if (!auth()->check() || (auth()->check() && auth()->user()->is_candidate))
+                @if ($job->available)
                 <a href="{{ route('apply', ['job' => $job->id]) }}" class="button">Lamar Pekerjaan Ini</a>
                 @else
                 <a style="background-color: #282828;" class="button">Loker Tidak Tersedia</a>
                 @endif
-
+                @endif
 			</div>
 
 		</div>

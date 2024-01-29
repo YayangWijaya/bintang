@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCandidateRequest;
 use App\Http\Requests\UpdateCandidateRequest;
 use App\Jobs\SendCandidateStatusUpdatedJob;
 use App\Jobs\SendCandidateTerminatedJob;
+use App\Models\Application;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
@@ -78,21 +79,21 @@ class CandidateController extends Controller
         return redirect()->route('candidate.index')->with('success','Data berhasil dihapus.');
     }
 
-    public function process(Candidate $candidate)
+    public function process(Application $application)
     {
-        if ($candidate->step <= 5) {
-            dispatch(new SendCandidateStatusUpdatedJob($candidate));
+        if ($application->step <= 5) {
+            dispatch(new SendCandidateStatusUpdatedJob($application));
         }
 
-        $candidate->increment('step');
+        $application->increment('step');
 
         return redirect()->back()->with('success', 'Sukses proses kandidat ke tahap selanjutnya');
     }
 
-    public function terminate(Candidate $candidate)
+    public function terminate(Application $application)
     {
-        $candidate->update(['terminated' => true]);
-        dispatch(new SendCandidateTerminatedJob($candidate));
+        $application->update(['terminated' => true]);
+        dispatch(new SendCandidateTerminatedJob($application));
         return redirect()->back()->with('success', 'Berhasil membuat kandidat tidak lolos');
     }
 }

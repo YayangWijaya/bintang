@@ -7,6 +7,7 @@ use App\Http\Requests\SignupRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
@@ -23,7 +24,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard');
         }
 
-        return redirect()->back()->with('message', 'Email dan Password salah');
+        return redirect()->back()->with('message', 'Email atau Password salah');
     }
 
     public function signup(Request $request)
@@ -65,7 +66,11 @@ class AuthController extends Controller
 
             DB::commit();
 
-            redirect()->route('index');
+            if ($request->referrer) {
+                return redirect($request->referrer);
+            } else {
+                return redirect()->route('index');
+            }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
