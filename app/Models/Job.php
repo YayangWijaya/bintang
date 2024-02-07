@@ -38,9 +38,9 @@ class Job extends Model
         });
     }
 
-    public function candidates()
+    public function applications()
     {
-        return $this->hasMany(Candidate::class, 'vacancy_id');
+        return $this->hasMany(Application::class, 'vacancy_id');
     }
 
     public function getTypeNameAttribute()

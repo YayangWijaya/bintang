@@ -34,7 +34,7 @@
                 <td class="centered">{{ date('d F Y', strtotime($job->created_at)) }}</td>
                 <td class="centered">{{ $job->expire ? date('d F Y', strtotime($job->expire)) : '-' }}</td>
                 <td class="centered title">
-                    <a href="{{ route('job.show', ['job' => $job->id]) }}">{{ $job->candidates_count }}</a>
+                    <a href="{{ route('job.show', ['job' => $job->id]) }}">{{ $job->applications_count }}</a>
                 </td>
                 <td class="action">
                     <span style="cursor: pointer;" onclick="deleteJob({{ $job->id }})" class="delete"><i class="fa fa-remove"></i> Delete</span>
@@ -53,6 +53,12 @@
         <div class="copyrights">© {{ date('Y') }} PT Century Batteries Indonesia. All Rights Reserved.</div>
     </div>
 </div>
+@foreach ($jobs as $index => $job)
+<form action="{{ route('job.destroy', $job->id) }}" method="POST" id="delete-{{ $job->id }}">
+    @csrf
+    @method('DELETE')
+  </form>
+@endforeach
 @endsection
 
 @push('scripts')
@@ -68,13 +74,7 @@
       confirmButtonText: 'Hapus'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Confirmed!',
-          'You agreed to pay extra amount.',
-          'success'
-        )
-      } else {
-        console.log('clicked cancel');
+        $("#delete-" + id).submit();
       }
     })
   }
