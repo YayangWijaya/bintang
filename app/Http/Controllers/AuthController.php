@@ -72,6 +72,7 @@ class AuthController extends Controller
                 return redirect()->route('index');
             }
         } catch (\Exception $e) {
+            \Log::info($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
