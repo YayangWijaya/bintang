@@ -18,7 +18,7 @@ return new class extends Migration
             $table->dropColumn([
                 'step',
                 'terminated',
-                'foreign_id'
+                'vacancy_id'
             ]);
         });
     }
