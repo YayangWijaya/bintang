@@ -62,9 +62,9 @@ class AuthController extends Controller
 
             $user->candidate()->create($data);
 
-            Auth::loginUsingId($user->id);
-
             DB::commit();
+
+            Auth::loginUsingId($user->id);
 
             if ($request->referrer) {
                 return redirect($request->referrer);
