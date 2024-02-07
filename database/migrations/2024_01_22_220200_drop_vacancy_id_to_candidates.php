@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::table('candidates', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->dropForeign('candidates_vacancy_id_foreign');
             $table->dropColumn([
                 'step',
                 'terminated',
+                'foreign_id'
             ]);
         });
     }
