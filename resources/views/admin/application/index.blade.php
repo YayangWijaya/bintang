@@ -102,29 +102,29 @@
                         @endif
                         @if ($app->step < 5 && !$app->terminated)
                           @if ($app->step === 1 && auth()->user()->role_name === 'Admin Psikotest')
-                          <a href="{{ route('terminateCandidate', ['candidate' => $app->id]) }}" class="button">TIDAK LOLOS</a>
-                          <a href="{{ route('processCandidate', ['candidate' => $app->id]) }}" class="button" style="background-color: #92C71F;">LOLOS PSIKOTEST</a>
+                          <a href="{{ route('terminateCandidate', ['application' => $app->id]) }}" class="button">TIDAK LOLOS</a>
+                          <a href="{{ route('processCandidate', ['application' => $app->id]) }}" class="button" style="background-color: #92C71F;">LOLOS PSIKOTEST</a>
                           @elseif (auth()->user()->role_name === 'Admin Psikotest')
                           <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
                           @endif
 
                           @if ($app->step === 2 && auth()->user()->role_name === 'Admin Fisik')
-                          <a href="{{ route('terminateCandidate', ['candidate' => $app->id]) }}" class="button">TIDAK LOLOS</a>
-                          <a href="{{ route('processCandidate', ['candidate' => $app->id]) }}" class="button" style="background-color: #92C71F;">LOLOS FISIK</a>
+                          <a href="{{ route('terminateCandidate', ['application' => $app->id]) }}" class="button">TIDAK LOLOS</a>
+                          <a href="{{ route('processCandidate', ['application' => $app->id]) }}" class="button" style="background-color: #92C71F;">LOLOS FISIK</a>
                           @elseif (auth()->user()->role_name === 'Admin Fisik')
                           <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
                           @endif
 
                           @if ($app->step === 3 && auth()->user()->role_name === 'Admin Kesehatan')
-                          <a href="{{ route('terminateCandidate', ['candidate' => $app->id]) }}" class="button">TIDAK LOLOS</a>
-                          <a href="{{ route('processCandidate', ['candidate' => $app->id]) }}" class="button" style="background-color: #92C71F;">LOLOS KESEHATAN</a>
+                          <a href="{{ route('terminateCandidate', ['application' => $app->id]) }}" class="button">TIDAK LOLOS</a>
+                          <a href="{{ route('processCandidate', ['application' => $app->id]) }}" class="button" style="background-color: #92C71F;">LOLOS KESEHATAN</a>
                           @elseif (auth()->user()->role_name === 'Admin Kesehatan')
                           <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
                           @endif
 
                           @if ($app->step === 4 && auth()->user()->role_name === 'HRD')
-                          <a href="{{ route('terminateCandidate', ['candidate' => $app->id]) }}" class="button">TIDAK LOLOS</a>
-                          <a href="{{ route('processCandidate', ['candidate' => $app->id]) }}" class="button" style="background-color: #92C71F;">LOLOS WAWANCARA</a>
+                          <a href="{{ route('terminateCandidate', ['application' => $app->id]) }}" class="button">TIDAK LOLOS</a>
+                          <a href="{{ route('processCandidate', ['application' => $app->id]) }}" class="button" style="background-color: #92C71F;">LOLOS WAWANCARA</a>
                           @elseif (auth()->user()->role_name === 'HRD')
                           <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
                           @endif
