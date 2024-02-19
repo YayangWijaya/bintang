@@ -66,6 +66,27 @@
 
                     <i>Status:</i>
                     <span>{{ $app->candidate->status }}</span>
+
+                    <i>Bukti Psikotest:</i>
+                    @if ($app->psikotestDoc)
+                    <span><a href="{{ $app->psikotestDoc->url }}" target="_blank">Lihat Bukti</a></span>
+                    @else
+                    <span>Bukti Tidak Tersedia</span>
+                    @endif
+
+                    <i>Bukti Fisik:</i>
+                    @if ($app->fisikDoc)
+                    <span><a href="{{ $app->fisikDoc->url }}" target="_blank">Lihat Bukti</a></span>
+                    @else
+                    <span>Bukti Tidak Tersedia</span>
+                    @endif
+
+                    <i>Bukti Kesehatan:</i>
+                    @if ($app->kesehatanDoc)
+                    <span><a href="{{ $app->kesehatanDoc->url }}" target="_blank">Lihat Bukti</a></span>
+                    @else
+                    <span>Bukti Tidak Tersedia</span>
+                    @endif
                 </div>
 
             </div>

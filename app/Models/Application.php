@@ -18,7 +18,9 @@ class Application extends Model
     ];
 
     protected $appends = [
-        'step_name'
+        'step_name',
+        'upload',
+        'upload_title',
     ];
 
     protected static function booted()
@@ -39,6 +41,31 @@ class Application extends Model
         return $this->belongsTo(Candidate::class);
     }
 
+    public function attachments()
+    {
+        return $this->morphMany(Attachment::class, 'attachmentable');
+    }
+
+    public function psikotestDoc()
+    {
+        return $this->morphOne(Attachment::class, 'attachmentable')->where('type', 2);
+    }
+
+    public function fisikDoc()
+    {
+        return $this->morphOne(Attachment::class, 'attachmentable')->where('type', 3);
+    }
+
+    public function kesehataDoc()
+    {
+        return $this->morphOne(Attachment::class, 'attachmentable')->where('type', 4);
+    }
+
+    public function job()
+    {
+        return $this->belongsTo(Job::class, 'vacancy_id');
+    }
+
     public function getStepNameAttribute()
     {
         switch ($this->step) {
@@ -57,8 +84,38 @@ class Application extends Model
         }
     }
 
-    public function job()
+    public function getUploadAttribute()
     {
-        return $this->belongsTo(Job::class, 'vacancy_id');
+        if (in_array($this->step, [2,3,4])) {
+            $exists = Attachment::where('attachmentable_id', $this->id)
+                                    ->where('attachmentable_type', Application::class)
+                                    ->where('type', $this->step)
+                                    ->first();
+
+            if ($exists) {
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getUploadTitleAttribute()
+    {
+        switch ($this->step) {
+            case 2:
+                return 'Psikotest';
+            break;
+            case 3:
+                return 'Fisik';
+            break;
+            case 4:
+                return 'Kesehatan';
+            break;
+            default:
+                return '';
+        }
     }
 }

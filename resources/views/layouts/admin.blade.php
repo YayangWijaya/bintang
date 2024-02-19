@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('dashboard-2.html') }}">
 <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
+@stack('style')
+
 </head>
 
 <body>

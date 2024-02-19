@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\IndexController;
@@ -28,6 +29,7 @@ Route::post('signup', [AuthController::class, 'store']);
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 Route::get('apply/{job}', [IndexController::class, 'apply'])->name('apply');
+Route::get('download/{attachment}', [AttachmentController::class, 'download'])->name('download');
 
 Route::prefix('dashboard')->group(function() {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
@@ -37,6 +39,7 @@ Route::prefix('dashboard')->group(function() {
         Route::resource('candidate', CandidateController::class);
         Route::resource('application', ApplicationController::class);
         Route::resource('job', JobController::class);
+        Route::resource('attachment', AttachmentController::class);
 
         Route::get('processCandidate/{application}', [CandidateController::class, 'process'])->name('processCandidate');
         Route::get('terminateCandidate/{application}', [CandidateController::class, 'terminate'])->name('terminateCandidate');
