@@ -15,8 +15,8 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         $applications = Application::when($request->keyword, function ($q) use ($request) {
-                            $q->where('name', 'ILIKE', "%" . $request->keyword . "%");
-                        })->orderBy('id','desc')->paginate(5);
+                                $q->where('name', 'ILIKE', "%" . $request->keyword . "%");
+                            })->orderBy('id','desc')->paginate(5);
 
         return view('admin.application.index', compact('applications'));
     }

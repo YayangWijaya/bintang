@@ -56,7 +56,7 @@ class Application extends Model
         return $this->morphOne(Attachment::class, 'attachmentable')->where('type', 3);
     }
 
-    public function kesehataDoc()
+    public function kesehatanDoc()
     {
         return $this->morphOne(Attachment::class, 'attachmentable')->where('type', 4);
     }
