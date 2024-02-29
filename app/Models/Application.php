@@ -63,7 +63,7 @@ class Application extends Model
 
     public function job()
     {
-        return $this->belongsTo(Job::class, 'vacancy_id');
+        return $this->belongsTo(Job::class, 'vacancy_id')->withTrashed();
     }
 
     public function getStepNameAttribute()
