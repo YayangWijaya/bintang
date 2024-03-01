@@ -81,6 +81,28 @@
 <script src="{{ asset('scripts/slick.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+@if (session()->get('success'))
+<script>
+Swal.fire({
+    title: 'Sukses',
+    text: '{{ session()->get('success') }}',
+    icon: 'success',
+    confirmButtonText: 'Ok'
+})
+</script>
+@endif
+
+@if (session()->get('error'))
+<script>
+Swal.fire({
+    title: 'Error',
+    text: '{{ session()->get('error') }}',
+    icon: 'error',
+    confirmButtonText: 'Ok'
+})
+</script>
+@endif
+
 @stack('scripts')
 </body>
 

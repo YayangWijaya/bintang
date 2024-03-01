@@ -6,6 +6,7 @@ use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class JobController extends Controller
 {
@@ -68,8 +69,19 @@ class JobController extends Controller
      */
     public function destroy(Job $job)
     {
-        $job->delete();
-        return redirect()->route('job.index')->with('success','Data berhasil dihapus.');
+        DB::beginTransaction();
+
+        try {
+            if ($job->applications()->exists()) {
+                return redirect()->route('job.index')->with('error', 'Lowongan ini mempunyai data Kandidat. Silahkan hapus data Kandidat terlebih dahulu');
+            }
+
+            $job->delete();
+            return redirect()->route('job.index')->with('success','Data berhasil dihapus.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('job.index')->with('error', $e->getMessage());
+        }
     }
 
     public function apply(Job $job)

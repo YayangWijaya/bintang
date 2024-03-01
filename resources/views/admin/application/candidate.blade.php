@@ -14,6 +14,7 @@
     <div class="col-md-12">
         <div class="row">
         @forelse ($applications as $app)
+        @if ($app->job)
         <div class="col-12 col-lg-4">
             <div class="application">
                 <div class="app-content">
@@ -26,6 +27,7 @@
                 </div>
             </div>
         </div>
+        @endif
         @empty
         <div style="text-align: center;">
             <h1>Tidak ada Lowongan</h1>

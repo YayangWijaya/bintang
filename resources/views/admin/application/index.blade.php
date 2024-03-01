@@ -20,6 +20,7 @@
         @endif
 
         @forelse ($applications as $app)
+        @if ($app->job)
         <div class="application">
             <div class="app-content">
                 <div class="info">
@@ -163,6 +164,7 @@
                 </div>
             </div>
         </div>
+        @endif
         @empty
         <div style="text-align: center;">
             <h1>Tidak ada Kandidat</h1>
