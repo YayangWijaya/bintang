@@ -3,9 +3,18 @@
 @section('content')
 <!-- Titlebar -->
 <div id="titlebar">
-    <div class="row">
-        <div class="col-md-12">
-            <h2>Data Kandidat</h2>
+    <div class="row flex items-center">
+        <div class="col-md-8">
+            <h2>Data Lamaran</h2>
+        </div>
+
+        <div class="col-md-4">
+            <form method="GET" action="{{ route('application.index') }}" id="filter-form">
+                <div class="flex items-center">
+                    <span class="!text-sm !text-black mr-3">Pencarian</span>
+                    <input type="text" class="form-control h-4" name="keyword" id="keyword" onkeypress="return filterForm(event, this)" placeholder="Pencarian pelamar..." value="{{ request('keyword') }}"/>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -117,13 +126,13 @@
 
                 <div>
                     <ul>
-                        @if ($app->step < 4)
+                        @if ($app->step < 5)
                             @if ($app->terminated)
                             <a class="button" style="background-color: #282828;">TIDAK LOLOS</a>
                             @endif
                         @endif
 
-                        @if ($app->step < 5 && !$app->terminated)
+                        @if ($app->step < 6 && !$app->terminated)
                           @if ($app->step === 1 && auth()->user()->role_name === 'Admin Psikotest')
                           <a href="{{ route('terminateCandidate', ['application' => $app->id]) }}" class="button">TIDAK LOLOS</a>
                           <a href="{{ route('processCandidate', ['application' => $app->id]) }}" class="button" style="background-color: #92C71F;">LOLOS PSIKOTEST</a>
@@ -151,9 +160,14 @@
                           @elseif (auth()->user()->role_name === 'HRD')
                           <a href="#" class="button" style="color: #000;background-color: rgba(240, 240, 240, 1);">SEDANG PROSES</a>
                           @endif
+
+                          @if ($app->step === 5 && auth()->user()->role_name === 'HRD')
+                          <a href="{{ route('processCandidate', ['application' => $app->id]) }}" class="button" style="background-color: #92C71F;">Sudah TTD Kontrak</a>
+                          @endif
                         @else
                           @if (!$app->terminated)
                           <a href="#" class="button" style="background-color: rgba(146, 199, 31, 1);">KANDIDAT LOLOS</a>
+                          <a href="{{ route('beritaAcara', ['application' => $app->id]) }}" target="_blank" class="button" style="background-color: #0865FD;">DOWNLOAD BA</a>
                           @endif
                         @endif
 
@@ -266,6 +280,12 @@ $("#document").on("change", function() {
     $("#file-name").html("Tidak ada file dipilih")
   }
 });
+
+function filterForm(e,i){
+    if(e.keycode == 13){
+        $("#filter-form").submit();
+    }
+}
 
 function openDialog(id)
 {

@@ -5,6 +5,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AttachmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
@@ -43,5 +44,7 @@ Route::prefix('dashboard')->group(function() {
 
         Route::get('processCandidate/{application}', [CandidateController::class, 'process'])->name('processCandidate');
         Route::get('terminateCandidate/{application}', [CandidateController::class, 'terminate'])->name('terminateCandidate');
+        Route::get('beritaAcara/{application}', [ExportController::class, 'BA'])->name('beritaAcara');
     });
+
 });

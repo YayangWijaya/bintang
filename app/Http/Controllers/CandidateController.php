@@ -87,7 +87,11 @@ class CandidateController extends Controller
 
         $application->increment('step');
 
-        return redirect()->back()->with('success', 'Sukses proses kandidat ke tahap selanjutnya');
+        if ($application->step === 6) {
+            return redirect()->back()->with('success', 'Sukses proses kandidat menjadi lolos');
+        } else {
+            return redirect()->back()->with('success', 'Sukses proses kandidat ke tahap selanjutnya');
+        }
     }
 
     public function terminate(Application $application)

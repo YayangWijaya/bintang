@@ -13,11 +13,10 @@
 
 <!-- Content -->
 <div class="row">
-
     <!-- Item -->
     <div class="col-lg-3 col-md-6">
         <a href="{{ route('job.index') }}" class="dashboard-stat color-1" style="color: #fff;cursor: pointer;">
-            <div class="dashboard-stat-content"><h4 class="counter">{{ $jobs }}</h4> <span>Jumlah Lowongan</span></div>
+            <div class="dashboard-stat-content"><h4 class="counter">{{ $jobs }}</h4> <span>Jumlah Loker</span></div>
             <div class="dashboard-stat-icon"><i class="ln ln-icon-File-Link"></i></div>
         </a>
     </div>
@@ -25,7 +24,7 @@
         <!-- Item -->
     <div class="col-lg-3 col-md-6">
         <a href="{{ route('job.index') }}" class="dashboard-stat color-2" style="color: #fff;cursor: pointer;">
-            <div class="dashboard-stat-content"><h4 class="counter">{{ $jobViews }}</h4> <span>Penayangan Lowongan</span></div>
+            <div class="dashboard-stat-content"><h4 class="counter">{{ $jobViews }}</h4> <span>Penayangan Loker</span></div>
             <div class="dashboard-stat-icon"><i class="ln ln-icon-Bar-Chart"></i></div>
         </a>
     </div>
@@ -34,7 +33,7 @@
         <!-- Item -->
     <div class="col-lg-3 col-md-6">
         <a href="{{ route('application.index') }}" class="dashboard-stat color-3" style="color: #fff;cursor: pointer;">
-            <div class="dashboard-stat-content"><h4 class="counter">{{ $candidates }}</h4> <span>Jumlah Kandidat</span></div>
+            <div class="dashboard-stat-content"><h4 class="counter">{{ $candidates }}</h4> <span>Jumlah Pengguna</span></div>
             <div class="dashboard-stat-icon"><i class="ln ln-icon-Business-ManWoman"></i></div>
         </a>
     </div>
@@ -43,9 +42,110 @@
     <!-- Item -->
     <div class="col-lg-3 col-md-6">
         <a href="{{ route('application.index') }}" class="dashboard-stat color-4" style="color: #fff;cursor: pointer;">
-            <div class="dashboard-stat-content"><h4 class="counter">{{ $applications }}</h4> <span>Lamaran</span></div>
+            <div class="dashboard-stat-content"><h4 class="counter">{{ $applications->count() }}</h4> <span>Jumlah Lamaran</span></div>
             <div class="dashboard-stat-icon"><i class="ln ln-icon-Files"></i></div>
         </a>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="px-5 py-3 bg-white rounded-t-lg">
+            <p class="text-lg text-black font-semibold">Progress Lamaran</p>
+        </div>
+
+        <hr/>
+
+        <div class="bg-white rounded-b-lg">
+            <ul class="text-black">
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Jumlah Lamaran</div>
+                        <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-600 ring-1 ring-inset ring-blue-500/10">{{ $applications->count() }}</span>
+                    </div>
+                </li>
+
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Tahap Psikotest</div>
+                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">{{ $applications->where('step', 1)->count() }}</span>
+                    </div>
+                </li>
+
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Tahap Fisik</div>
+                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">{{ $applications->where('step', 2)->count() }}</span>
+                    </div>
+                </li>
+
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Tahap Kesehatan</div>
+                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">{{ $applications->where('step', 3)->count() }}</span>
+                    </div>
+                </li>
+
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Tahap HRD</div>
+                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">{{ $applications->where('step', 4)->count() }}</span>
+                    </div>
+                </li>
+
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Tahap TTD Kontrak (Diterima)</div>
+                        <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-600 ring-1 ring-inset ring-green-500/10">{{ $applications->where('step', 5)->count() }}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6">
+        <div class="px-5 py-3 bg-white rounded-t-lg">
+            <p class="text-lg text-black font-semibold">Lamaran Di Tolak</p>
+        </div>
+
+        <hr/>
+
+        <div class="bg-white rounded-b-lg">
+            <ul class="text-black">
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Jumlah Lamaran Ditolak</div>
+                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">{{ $terminateds->count() }}</span>
+                    </div>
+                </li>
+
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Tahap Psikotest</div>
+                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">{{ $terminateds->where('step', 1)->count() }}</span>
+                    </div>
+                </li>
+
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Tahap Fisik</div>
+                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">{{ $terminateds->where('step', 2)->count() }}</span>
+                    </div>
+                </li>
+
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Tahap Kesehatan</div>
+                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">{{ $terminateds->where('step', 3)->count() }}</span>
+                    </div>
+                </li>
+
+                <li class="py-2 px-4 hover:bg-[#EBEDF3]">
+                    <div class="flex items-center justify-between border-2 border-black">
+                        <div class="font-medium">Tahap HRD</div>
+                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-600 ring-1 ring-inset ring-red-500/10">{{ $terminateds->where('step', 4)->count() }}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 
 </div>

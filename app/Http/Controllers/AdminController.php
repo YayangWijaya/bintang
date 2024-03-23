@@ -20,8 +20,9 @@ class AdminController extends Controller
         $jobs = Job::count();
         $jobViews = Job::sum('views');
         $candidates = Candidate::count();
-        $applications = Application::count();
+        $applications = Application::where('terminated', false)->get();
+        $terminateds = Application::where('terminated', true)->get();
 
-        return view('admin.index', compact('jobs', 'jobViews', 'candidates', 'applications'));
+        return view('admin.index', compact('jobs', 'jobViews', 'candidates', 'applications', 'terminateds'));
     }
 }

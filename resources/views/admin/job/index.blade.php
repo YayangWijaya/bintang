@@ -23,7 +23,9 @@
                 <th><i class="fa fa-calendar"></i> Tanggal Posting</th>
                 <th><i class="fa fa-calendar"></i> Tanggal Expired</th>
                 <th><i class="fa fa-user"></i> Pelamar</th>
+                @if (auth()->user()->role_name === "HRD")
                 <th>Aksi</th>
+                @endif
             </tr>
 
             @forelse ($jobs as $job)
@@ -36,9 +38,11 @@
                 <td class="centered title">
                     <a href="{{ route('job.show', ['job' => $job->id]) }}">{{ $job->applications_count }}</a>
                 </td>
+                @if (auth()->user()->role_name === "HRD")
                 <td class="action">
                     <span style="cursor: pointer;" onclick="deleteJob({{ $job->id }})" class="delete"><i class="fa fa-remove"></i> Delete</span>
                 </td>
+                @endif
             </tr>
             @empty
             <tr>
