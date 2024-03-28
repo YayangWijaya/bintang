@@ -33,12 +33,12 @@ class Application extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withTrashed();
     }
 
     public function candidate()
     {
-        return $this->belongsTo(Candidate::class);
+        return $this->belongsTo(Candidate::class)->withTrashed();
     }
 
     public function attachments()
@@ -63,7 +63,7 @@ class Application extends Model
 
     public function job()
     {
-        return $this->belongsTo(Job::class, 'vacancy_id');
+        return $this->belongsTo(Job::class, 'vacancy_id')->withTrashed();
     }
 
     public function getStepNameAttribute()
