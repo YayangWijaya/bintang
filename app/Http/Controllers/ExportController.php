@@ -47,6 +47,10 @@ class ExportController extends Controller
 
         foreach ($applications as $index => $app)
         {
+            if (!$app->job) {
+                continue;
+            }
+
             $temp['No'] = $index+1;
             $temp['Lowongan'] = $app->job->name . " - " . $app->job->location;
             $temp['Tanggal Apply'] = date('d-M-Y', strtotime($app->created_at));
