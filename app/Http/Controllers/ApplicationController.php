@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Http\Requests\StoreApplicationRequest;
 use App\Http\Requests\UpdateApplicationRequest;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -21,9 +22,20 @@ class ApplicationController extends Controller
                                             ->orWhere('phone', 'ILIKE', "%" . $request->keyword . "%")
                                             ->orWhere('ktp_number', 'ILIKE', "%" . $request->keyword . "%");
                             });
-                        })->orderBy('id','desc')->paginate(5);
+                        })->when($request->step && $request->step !== "", function ($q) use ($request) {
+                            return $q->where('step', $request->step);
+                        })->when($request->vacancy_id && $request->vacancy_id !== "", function ($q) use ($request) {
+                            return $q->where('vacancy_id', $request->vacancy_id);
+                        })->when($request->location && $request->location !== "", function ($q) use ($request) {
+                            return $q->whereHas('job', function ($r) use ($request) {
+                                return $r->where('location', $request->location);
+                            });
+                        })
+                        ->orderBy('id','desc')->paginate(5);
 
-        return view('admin.application.index', compact('applications'));
+        $jobs = Job::get();
+
+        return view('admin.application.index', compact('applications', 'jobs'));
     }
 
     public function create()

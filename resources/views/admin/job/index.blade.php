@@ -7,7 +7,9 @@
     </div>
 
     <div>
+        @if (auth()->user()->role_name === "HRD")
         <a href="{{ route('job.create') }}" class="button" type="button">Tambah Loker</a>
+        @endif
     </div>
 </div>
 

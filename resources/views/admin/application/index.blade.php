@@ -4,15 +4,58 @@
 <!-- Titlebar -->
 <div id="titlebar">
     <div class="row flex items-center">
-        <div class="col-md-8">
+        <div class="col-md-4">
             <h2>Data Lamaran</h2>
         </div>
 
-        <div class="col-md-4">
-            <form method="GET" action="{{ route('application.index') }}" id="filter-form">
-                <div class="flex items-center">
+        <div class="col-md-8">
+            <form class="flex float-right" method="GET" action="{{ route('application.index') }}" id="filter-form">
+                <div class="mr-3">
+                    <span class="!text-sm !text-black mr-3">Filter Lowongan</span>
+                    <select name="vacancy_id" id="vacancy_id" class="form-control h-8" onchange="return filterForm(event, this, 'select')">
+                        <option value="" selected disabled>Pilih Lowongan</option>
+                        <option value="" {{ request('vacancy_id') === "" ? 'selected' : '' }}>Semua Lowongan</option>
+                        @forelse ($jobs as $job)
+                        <option value="{{ $job->id }}" {{ $job->id === request('vacancy_id') ? 'selected' : '' }}>{{ $job->name }}</option>
+                        @empty
+
+                        @endforelse
+                    </select>
+                </div>
+
+                <div class="mr-3">
+                    <span class="!text-sm !text-black mr-3">Filter Lokasi</span>
+                    <select name="location" id="location" class="form-control h-8" onchange="return filterForm(event, this, 'select')">
+                        <option value="" selected disabled>Pilih Lokasi</option>
+                        <option value="" {{ request('location') === "" ? 'selected' : '' }}>Semua Lokasi</option>
+                        @forelse ($jobs as $job)
+                        <option value="{{ $job->location }}" {{ $job->id === request('location') ? 'selected' : '' }}>{{ $job->location }}</option>
+                        @empty
+
+                        @endforelse
+                    </select>
+                </div>
+
+                <div class="mr-3">
+                    <span class="!text-sm !text-black mr-3">Filter Step</span>
+                    <select name="step" id="step" class="form-control h-8" onchange="return filterForm(event, this, 'select')">
+                        <option value="" selected disabled>Pilih Step</option>
+                        <option value="" {{ request('step') === "" ? 'selected' : '' }}>Semua Step</option>
+                        <option value="2" {{ request('step') === "2" ? 'selected' : '' }}>Tahap Psikotest</option>
+                        <option value="3" {{ request('step') === "3" ? 'selected' : '' }}>Tahap Fisik</option>
+                        <option value="4" {{ request('step') === "4" ? 'selected' : '' }}>Tahap Kesehatan</option>
+                        <option value="5" {{ request('step') === "5" ? 'selected' : '' }}>Tahap HRD</option>
+                        <option value="6" {{ request('step') === "6" ? 'selected' : '' }}>Tahap TTD Kontrak</option>
+                    </select>
+                </div>
+
+                <div>
                     <span class="!text-sm !text-black mr-3">Pencarian</span>
-                    <input type="text" class="form-control h-4" name="keyword" id="keyword" onkeypress="return filterForm(event, this)" placeholder="Pencarian pelamar..." value="{{ request('keyword') }}"/>
+                    <input type="text" class="form-control h-4" name="keyword" id="keyword" onkeypress="return filterForm(event, this. 'input')" placeholder="Pencarian pelamar..." value="{{ request('keyword') }}"/>
+                </div>
+
+                <div class="w-[150px] ml-3">
+                    <button class="bg-[#0865FD] text-white font-bold hover:bg-[#0865FD] rounded py-1 mt-[22px] w-full" onclick="exportData()" type="button">EXPORT DATA</button>
                 </div>
             </form>
         </div>
@@ -281,10 +324,49 @@ $("#document").on("change", function() {
   }
 });
 
-function filterForm(e,i){
-    if(e.keycode == 13){
+function filterForm(e,i,type){
+    if(type === 'input' && e.keycode == 13){
         $("#filter-form").submit();
     }
+
+    if (type === 'select') {
+        $("#filter-form").submit();
+    }
+}
+
+function exportData()
+{
+    $.ajax({
+        url: '{{ route('exportApplications') }}',
+        data: {
+            "vacancy_id": $("#vacancy_id").val(),
+            "location": $("#location").val(),
+            "step": $("#step").val(),
+            "keyword": $("#keyword").val(),
+        },
+        method: 'GET',
+        xhrFields: {
+            responseType: 'blob' // Set response type to blob
+        },
+        success: function(data, textStatus, xhr) {
+            var fileURL = window.URL.createObjectURL(new Blob([data], { type: data.type }));
+            var fileLink = document.createElement('a');
+
+            fileLink.href = fileURL;
+            fileLink.setAttribute('download', 'Export Pelamar.xlsx');
+            document.body.appendChild(fileLink);
+
+            fileLink.click();
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            Swal.fire({
+                title: 'Error',
+                text: 'No Data To Export',
+                icon: 'error',
+                confirmButtonText: 'Close'
+            })
+        }
+    });
 }
 
 function openDialog(id)

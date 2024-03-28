@@ -45,6 +45,8 @@ Route::prefix('dashboard')->group(function() {
         Route::get('processCandidate/{application}', [CandidateController::class, 'process'])->name('processCandidate');
         Route::get('terminateCandidate/{application}', [CandidateController::class, 'terminate'])->name('terminateCandidate');
         Route::get('beritaAcara/{application}', [ExportController::class, 'BA'])->name('beritaAcara');
+
+        Route::get('exportApplications', [ExportController::class, 'applications'])->name('exportApplications');
     });
 
 });
