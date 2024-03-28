@@ -26,6 +26,7 @@ class ExportController extends Controller
     public function applications(Request $request)
     {
         $data = [];
+        $numbering = 0;
 
         $applications = Application::when($request->keyword, function ($q) use ($request) {
             return $q->whereHas('candidate', function ($r) use ($request) {
@@ -45,14 +46,16 @@ class ExportController extends Controller
         })
         ->get();
 
-        foreach ($applications as $index => $app)
+        foreach ($applications as $app)
         {
             if (!$app->job) {
                 continue;
             }
 
-            $temp['No'] = $index+1;
+            $numbering++;
+            $temp['No'] = $numbering;
             $temp['Lowongan'] = $app->job->name . " - " . $app->job->location;
+            $temp['Step'] = $app->step_name;
             $temp['Tanggal Apply'] = date('d-M-Y', strtotime($app->created_at));
             $temp['Nama'] = $app->candidate->name;
             $temp['Email'] = $app->candidate->email;
