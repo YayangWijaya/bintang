@@ -64,7 +64,7 @@ class ExportController extends Controller
             $temp['Gender'] = $app->candidate->gender;
             $temp['Agama'] = $app->candidate->religion;
             $temp['Status'] = $app->candidate->status;
-            $temp['No KTP'] = $app->candidate->ktp_number;
+            $temp['No KTP'] = "'" . $app->candidate->ktp_number;
             $temp['Link CV'] = url($app->candidate->cv_url);
             $temp['Link Foto'] = url($app->candidate->photo_url);
             $temp['Link Dokumen'] = url($app->candidate->document_url);
