@@ -69,7 +69,7 @@ class AuthController extends Controller
             if ($request->referrer) {
                 return redirect($request->referrer);
             } else {
-                return redirect()->route('index');
+                return redirect()->route('index')->with('success', 'Berhasil membuat akun');
             }
         } catch (\Exception $e) {
             \Log::info($e->getMessage());

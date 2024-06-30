@@ -79,7 +79,7 @@
 
                 <div class="form" style="width: 100%;display:flex;justify-content:space-between;align-items:center;">
                     <div>
-                        <button type="submit" class="button" style="float: right;color: #fff;">Tambah <i class="fa fa-arrow-circle-right"></i></button>
+                        <button type="submit" class="button" style="float: right;color: #fff;background-color: #E12A2A;padding: 7px;">Tambah <i class="fa fa-arrow-circle-right"></i></button>
                     </div>
                 </div>
               </form>

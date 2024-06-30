@@ -12,7 +12,7 @@
 <div id="wrapper">
 <header>
 <div class="container" style="width: 100%;">
-	<div class="sixteen columns" style="display: block;margin-top: 20px;width: 100%;">
+	<div class="sixteen columns" style="display: block;width: 100%;">
         <div>
             <div style="display: flex;align-items: center;justify-content: center;">
                 <a href="{{ route('index') }}"><img src="{{ asset('images/logo.png') }}" alt="PT Century Batteries Indonesia" style="height: 45px;margin: 0;"/></a>
@@ -92,5 +92,28 @@
 <script src="{{ asset('scripts/stacktable.js') }}"></script>
 <script src="{{ asset('scripts/slick.min.js') }}"></script>
 <script src="{{ asset('scripts/headroom.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session()->get('success'))
+<script>
+Swal.fire({
+    title: 'Sukses',
+    text: '{{ session()->get('success') }}',
+    icon: 'success',
+    confirmButtonText: 'Ok'
+})
+</script>
+@endif
+
+@if (session()->get('error'))
+<script>
+Swal.fire({
+    title: 'Error',
+    text: '{{ session()->get('error') }}',
+    icon: 'error',
+    confirmButtonText: 'Ok'
+})
+</script>
+@endif
 </body>
 </html>

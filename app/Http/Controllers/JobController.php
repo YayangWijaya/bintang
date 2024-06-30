@@ -77,6 +77,7 @@ class JobController extends Controller
             }
 
             $job->delete();
+            DB::commit();
             return redirect()->route('job.index')->with('success','Data berhasil dihapus.');
         } catch (\Exception $e) {
             DB::rollBack();

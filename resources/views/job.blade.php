@@ -7,10 +7,6 @@
 			<h2>{{ $job->name }} <span class="full-time">{{ $job->type_name }}</span></h2>
 		</div>
 
-		<div class="six columns">
-			<a href="#" class="button white"><i class="fa fa-star"></i> Bookmark This Job</a>
-		</div>
-
 	</div>
 </div>
 

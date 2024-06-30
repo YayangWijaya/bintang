@@ -249,7 +249,7 @@
 
           <div class="divider"></div>
 
-          <button class="send" id="upload">Upload Bukti</button>
+          <button class="send" id="upload" style="background: #E12A2A;color: #fff;padding: 7px;">Upload Bukti</button>
       </form>
   </div>
 </div>
