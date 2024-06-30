@@ -21,7 +21,7 @@
 
         @forelse ($job->applications as $app)
         <div class="application">
-            <div class="app-content">
+            <div class="app-content" style="background-color: {{ $app->is_pass ? '#BBF7D0' : ($app->is_fail ? '#FEE2E2' : '') }};">
                 <div class="info">
                     <img src="{{ asset($app->candidate->photo_url) }}" alt="{{ $app->candidate->name }}" style="object-fit: cover;">
                     <span>{{ $app->candidate->name }}</span>

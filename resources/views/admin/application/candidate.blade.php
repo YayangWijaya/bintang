@@ -17,7 +17,7 @@
         @if ($app->job)
         <div class="col-12 col-lg-4">
             <div class="application">
-                <div class="app-content">
+                <div class="app-content" style="background-color: {{ $app->is_pass ? '#BBF7D0' : ($app->is_fail ? '#FEE2E2' : '') }};">
                     <div class="info">
                         <span style="margin-top: 0;font-size: 20px;color: #E12A2A;font-weight: 800;">{{ $app->job->name }}</span>
                         <span style="margin-top: 0;font-size: 16px;color: black;">{{ $app->job->location }}</span>

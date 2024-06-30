@@ -17,7 +17,7 @@
 <div id="wrapper">
 <header class="dashboard-header">
 <div class="container">
-	<div class="sixteen columns" style="align-items: center;display: flex;justify-content: space-between;">
+	<div class="sixteen columns" style="align-items: center;display: flex;justify-content: space-between;margin-top: 5;">
 
 		<div id="logo">
 			<h1 style="display: flex;align-items: center;"><a href="{{ route('index') }}"><img src="{{ asset('images/logo.png') }}" alt="PT Century Batteries Indonesia" style="height: 60px;margin-top: 0;margin-right: 10px;"/></a> PT Century Batteries Indonesia</h1>

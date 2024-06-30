@@ -74,7 +74,7 @@
         @forelse ($applications as $app)
         @if ($app->job)
         <div class="application">
-            <div class="app-content">
+            <div class="app-content" style="background-color: {{ $app->is_pass ? '#BBF7D0' : ($app->is_fail ? '#FEE2E2' : '') }};">
                 <div class="info">
                     <img src="{{ asset($app->candidate->photo_url) }}" alt="{{ $app->candidate->name }}" style="object-fit: cover;{{ $app->terminated ? '-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */filter: grayscale(100%);' : '' }}">
                     <span style="{{ $app->terminated ? 'color: #A9B2C3;' : '' }}">{{ $app->candidate->name }} - {{ $app->job->name }}</span>

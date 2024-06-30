@@ -12,7 +12,7 @@
 <div id="wrapper">
 <header>
 <div class="container" style="width: 100%;">
-	<div class="sixteen columns" style="display: block;width: 100%;">
+	<div class="sixteen columns" style="display: block;margin-top: 20px;width: 100%;">
         <div>
             <div style="display: flex;align-items: center;justify-content: center;">
                 <a href="{{ route('index') }}"><img src="{{ asset('images/logo.png') }}" alt="PT Century Batteries Indonesia" style="height: 45px;margin: 0;"/></a>

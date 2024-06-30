@@ -21,6 +21,8 @@ class Application extends Model
         'step_name',
         'upload',
         'upload_title',
+        'is_pass',
+        'is_fail',
     ];
 
     protected static function booted()
@@ -68,6 +70,10 @@ class Application extends Model
 
     public function getStepNameAttribute()
     {
+        if ($this->terminated) {
+            return 'Tidak Lolos';
+        }
+
         switch ($this->step) {
             case 1:
                 return 'Test Psikotest';
@@ -80,6 +86,8 @@ class Application extends Model
             break;
             case 4:
                 return 'Wawancara';
+            case 6:
+                return 'Lolos';
             break;
         }
     }
@@ -117,5 +125,15 @@ class Application extends Model
             default:
                 return '';
         }
+    }
+
+    public function getIsPassAttribute()
+    {
+        return $this->step === 6 && $this->terminated === false;
+    }
+
+    public function getIsFailAttribute()
+    {
+        return $this->terminated;
     }
 }
