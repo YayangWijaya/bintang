@@ -52,7 +52,7 @@
             <p class="font-bold text-lg border-b-2 border-gray-500">Laporan Admin</p>
         </div>
 
-        @if ($report)
+        @if ($report && count($report->items))
         <div class="grid grid-cols-1 md:grid-cols-4 p-5">
             <div class="p-5">
                 <div class="text-center">
