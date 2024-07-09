@@ -81,17 +81,17 @@
 
                     <div class="text-left mb-3">
                         <label>Jumlah Kandidat</label>
-                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'Admin Fisik')) ? $report->items->where('type', 'Admin Fisik')[0]['candidates'] : '' }}"/>
+                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'Admin Fisik')) ? $report->items->where('type', 'Admin Fisik')[1]['candidates'] : '' }}"/>
                     </div>
 
                     <div class="text-left mb-3">
                         <label>Jumlah Kandidat Hadir</label>
-                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'Admin Fisik')) ? $report->items->where('type', 'Admin Fisik')[0]['presence'] : '' }}"/>
+                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'Admin Fisik')) ? $report->items->where('type', 'Admin Fisik')[1]['presence'] : '' }}"/>
                     </div>
 
                     <div class="mb-3 text-left">
                         <label>Jumlah Kandidat Lolos</label>
-                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'Admin Fisik')) ? $report->items->where('type', 'Admin Fisik')[0]['pass'] : '' }}"/>
+                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'Admin Fisik')) ? $report->items->where('type', 'Admin Fisik')[1]['pass'] : '' }}"/>
                     </div>
                 </div>
             </div>
@@ -102,17 +102,17 @@
 
                     <div class="text-left mb-3">
                         <label>Jumlah Kandidat</label>
-                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'Admin Kesehatan')) ? $report->items->where('type', 'Admin Kesehatan')[0]['candidates'] : '' }}"/>
+                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'Admin Kesehatan')) ? $report->items->where('type', 'Admin Kesehatan')[2]['candidates'] : '' }}"/>
                     </div>
 
                     <div class="text-left mb-3">
                         <label>Jumlah Kandidat Hadir</label>
-                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'Admin Kesehatan')) ? $report->items->where('type', 'Admin Kesehatan')[0]['presence'] : '' }}"/>
+                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'Admin Kesehatan')) ? $report->items->where('type', 'Admin Kesehatan')[2]['presence'] : '' }}"/>
                     </div>
 
                     <div class="mb-3 text-left">
                         <label>Jumlah Kandidat Lolos</label>
-                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'Admin Kesehatan')) ? $report->items->where('type', 'Admin Kesehatan')[0]['pass'] : '' }}"/>
+                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'Admin Kesehatan')) ? $report->items->where('type', 'Admin Kesehatan')[2]['pass'] : '' }}"/>
                     </div>
                 </div>
             </div>
@@ -123,17 +123,17 @@
 
                     <div class="text-left mb-3">
                         <label>Jumlah Kandidat</label>
-                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'HRD')) ? $report->items->where('type', 'HRD')[0]['candidates'] : '' }}"/>
+                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'HRD')) ? $report->items->where('type', 'HRD')[3]['candidates'] : '' }}"/>
                     </div>
 
                     <div class="text-left mb-3">
                         <label>Jumlah Kandidat Hadir</label>
-                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'HRD')) ? $report->items->where('type', 'HRD')[0]['presence'] : '' }}"/>
+                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'HRD')) ? $report->items->where('type', 'HRD')[3]['presence'] : '' }}"/>
                     </div>
 
                     <div class="mb-3 text-left">
                         <label>Jumlah Kandidat Lolos</label>
-                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'HRD')) ? $report->items->where('type', 'HRD')[0]['pass'] : '' }}"/>
+                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'HRD')) ? $report->items->where('type', 'HRD')[3]['pass'] : '' }}"/>
                     </div>
                 </div>
             </div>
