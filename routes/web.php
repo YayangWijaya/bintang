@@ -53,6 +53,7 @@ Route::prefix('dashboard')->group(function() {
         Route::get('beritaAcara/{application}', [ExportController::class, 'BA'])->name('beritaAcara');
 
         Route::get('exportApplications', [ExportController::class, 'applications'])->name('exportApplications');
+        Route::get('exportReport/{report}', [ExportController::class, 'report'])->name('exportReport');
         Route::get('create_report', [ReportController::class, 'new'])->name('report.new');
         Route::post('update_report/{report}', [ReportController::class, 'updateReport'])->name('report.updateReport');
     });

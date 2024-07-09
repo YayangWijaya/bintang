@@ -9,7 +9,7 @@
 <body>
     <div style="text-align: center;">
         <div style="position: absolute;">
-            <img src="{{ asset('images/logo.png') }}"/>
+            {{-- <img src="{{ asset('images/logo.png') }}"/> --}}
         </div>
 
         <div style="width: 100%;text-align: center;border-bottom: 2px solid #000;padding-bottom: 15px;">
@@ -32,7 +32,8 @@
             @endforeach
         </ol>
 
-        <p>Telah mengadakan proses penerimaan karyawan baru untuk mengisi posisi {{ $application->job->name }} di perusahaan kami. Berikut ini adalah karyawan baru yang telah diterima:</p>
+        <p>Telah mengadakan proses penerimaan karyawan baru untuk mengisi posisi {{ $application->job->name }} di perusahaan kami dan dinyatakan <strong>LOLOS</strong>.</p>
+        <p>Berikut ini adalah karyawan baru yang telah diterima:</p>
 
         <table style="margin-left: 18px;">
             <tbody>

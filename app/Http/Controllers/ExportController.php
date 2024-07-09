@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\DataExport;
 use Pdf;
 use App\Models\Application;
+use App\Models\Report;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -76,5 +77,14 @@ class ExportController extends Controller
         }
 
         return response(['message' => 'No Data to Export'], 500);
+    }
+
+    public function report(Report $report)
+    {
+        $pdf = Pdf::loadView('pdf.laporan', [
+            'report' => $report
+        ])->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Laporan ' . date('F Y', strtotime($report->date)) . '.pdf');
     }
 }
