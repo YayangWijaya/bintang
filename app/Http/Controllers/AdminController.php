@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\Candidate;
 use App\Models\Job;
+use App\Models\Report;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -22,7 +23,8 @@ class AdminController extends Controller
         $candidates = Candidate::count();
         $applications = Application::where('terminated', false)->get();
         $terminateds = Application::where('terminated', true)->get();
+        $report = Report::with(['items'])->where('date', date('Y-m'))->first();
 
-        return view('admin.index', compact('jobs', 'jobViews', 'candidates', 'applications', 'terminateds'));
+        return view('admin.index', compact('jobs', 'jobViews', 'candidates', 'applications', 'terminateds', 'report'));
     }
 }

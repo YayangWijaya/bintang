@@ -8,6 +8,7 @@ use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,12 +46,15 @@ Route::prefix('dashboard')->group(function() {
         Route::resource('application', ApplicationController::class);
         Route::resource('job', JobController::class);
         Route::resource('attachment', AttachmentController::class);
+        Route::resource('report', ReportController::class);
 
         Route::get('processCandidate/{application}', [CandidateController::class, 'process'])->name('processCandidate');
         Route::get('terminateCandidate/{application}', [CandidateController::class, 'terminate'])->name('terminateCandidate');
         Route::get('beritaAcara/{application}', [ExportController::class, 'BA'])->name('beritaAcara');
 
         Route::get('exportApplications', [ExportController::class, 'applications'])->name('exportApplications');
+        Route::get('create_report', [ReportController::class, 'new'])->name('report.new');
+        Route::post('update_report/{report}', [ReportController::class, 'updateReport'])->name('report.updateReport');
     });
 
 });

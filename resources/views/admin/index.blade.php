@@ -47,6 +47,102 @@
         </a>
     </div>
 
+    <div class="col-lg-12 bg-white roundex-xl mb-5">
+        <div class="px-5 pt-5">
+            <p class="font-bold text-lg border-b-2 border-gray-500">Laporan Admin</p>
+        </div>
+
+        @if ($report)
+        <div class="grid grid-cols-1 md:grid-cols-4 p-5">
+            <div class="p-5">
+                <div class="text-center">
+                    <p class="mb-10 font-bold">Tahap Psikotest</p>
+
+                    <div class="text-left mb-3">
+                        <label>Jumlah Kandidat</label>
+                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'Admin Psikotest')) ? $report->items->where('type', 'Admin Psikotest')[0]['candidates'] : '' }}"/>
+                    </div>
+
+                    <div class="text-left mb-3">
+                        <label>Jumlah Kandidat Hadir</label>
+                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'Admin Psikotest')) ? $report->items->where('type', 'Admin Psikotest')[0]['presence'] : '' }}"/>
+                    </div>
+
+                    <div class="mb-3 text-left">
+                        <label>Jumlah Kandidat Lolos</label>
+                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'Admin Psikotest')) ? $report->items->where('type', 'Admin Psikotest')[0]['pass'] : '' }}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-5">
+                <div class="text-center">
+                    <p class="mb-10 font-bold">Tahap Fisik</p>
+
+                    <div class="text-left mb-3">
+                        <label>Jumlah Kandidat</label>
+                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'Admin Fisik')) ? $report->items->where('type', 'Admin Fisik')[0]['candidates'] : '' }}"/>
+                    </div>
+
+                    <div class="text-left mb-3">
+                        <label>Jumlah Kandidat Hadir</label>
+                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'Admin Fisik')) ? $report->items->where('type', 'Admin Fisik')[0]['presence'] : '' }}"/>
+                    </div>
+
+                    <div class="mb-3 text-left">
+                        <label>Jumlah Kandidat Lolos</label>
+                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'Admin Fisik')) ? $report->items->where('type', 'Admin Fisik')[0]['pass'] : '' }}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-5">
+                <div class="text-center">
+                    <p class="mb-10 font-bold">Tahap Kesehatan</p>
+
+                    <div class="text-left mb-3">
+                        <label>Jumlah Kandidat</label>
+                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'Admin Kesehatan')) ? $report->items->where('type', 'Admin Kesehatan')[0]['candidates'] : '' }}"/>
+                    </div>
+
+                    <div class="text-left mb-3">
+                        <label>Jumlah Kandidat Hadir</label>
+                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'Admin Kesehatan')) ? $report->items->where('type', 'Admin Kesehatan')[0]['presence'] : '' }}"/>
+                    </div>
+
+                    <div class="mb-3 text-left">
+                        <label>Jumlah Kandidat Lolos</label>
+                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'Admin Kesehatan')) ? $report->items->where('type', 'Admin Kesehatan')[0]['pass'] : '' }}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 rounded-xl p-5">
+                <div class="text-center">
+                    <p class="mb-10 font-bold">Tahap Wawancara HRD</p>
+
+                    <div class="text-left mb-3">
+                        <label>Jumlah Kandidat</label>
+                        <input class="h-8" type="number" name="candidates" id="candidates" readonly value="{{ count($report->items->where('type', 'HRD')) ? $report->items->where('type', 'HRD')[0]['candidates'] : '' }}"/>
+                    </div>
+
+                    <div class="text-left mb-3">
+                        <label>Jumlah Kandidat Hadir</label>
+                        <input class="h-8" type="number" name="presence" id="presence" readonly value="{{ count($report->items->where('type', 'HRD')) ? $report->items->where('type', 'HRD')[0]['presence'] : '' }}"/>
+                    </div>
+
+                    <div class="mb-3 text-left">
+                        <label>Jumlah Kandidat Lolos</label>
+                        <input class="h-8" type="number" name="pass" id="pass" readonly value="{{ count($report->items->where('type', 'HRD')) ? $report->items->where('type', 'HRD')[0]['pass'] : '' }}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @else
+        <div class="p-5 text-center">Tidak ada Laporan</div>
+        @endif
+    </div>
+
     <div class="col-lg-4 col-md-6">
         <div class="px-5 py-3 bg-white rounded-t-lg">
             <p class="text-lg text-black font-semibold">Progress Lamaran</p>
