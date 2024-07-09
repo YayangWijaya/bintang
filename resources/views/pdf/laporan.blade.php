@@ -9,7 +9,7 @@
 <body>
     <div style="text-align: center;">
         <div style="position: absolute;">
-            {{-- <img src="{{ asset('images/logo.png') }}"/> --}}
+            <img src="{{ asset('images/logo.png') }}"/>
         </div>
 
         <div style="width: 100%;text-align: center;border-bottom: 2px solid #000;padding-bottom: 15px;">
